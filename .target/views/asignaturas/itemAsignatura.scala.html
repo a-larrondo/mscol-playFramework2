@@ -1,0 +1,6 @@
+@(asignatura: Asignatura)
+
+<li data-project="@asignatura.idAsignatura">
+    <a class="name" href="#@routes.Unidades.index(asignatura.idAsignatura, asignatura.nombreAsignatura)">@asignatura.nombreAsignatura </a>
+    <span class="loader"></span>
+</li>

@@ -1,0 +1,12 @@
+@(nombre: String,asignaturas: List[Asignatura])
+<li data-group="@nombre">
+    <span class="toggle"></span>
+    
+    <span class="loader"></span>
+    
+    <ul>
+        @asignaturas.map { asignatura =>
+            @views.html.asignaturas.itemAsignatura(asignatura)
+        }
+    </ul>
+</li>

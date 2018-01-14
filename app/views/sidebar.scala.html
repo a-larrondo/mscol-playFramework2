@@ -1,0 +1,81 @@
+<div class="sidebar">
+  <div class="sidebar-toggle"></div>
+  <ul class="sidebar-list">
+    <li>Menu item 1</li>
+    <li>Menu item 2</li>
+    <li>Menu item 3</li>
+    <li>Menu item 4</li>
+    <li>Menu item 5</li>
+  </ul>
+</div>
+<div class="content">
+  <p>Page content</p>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  sidebarStatus = false;
+  $('.sidebar-toggle').click(function() {
+    if (sidebarStatus == false) {
+      $('.sidebar').animate({
+        marginLeft: "0px",
+        opacity: "1"
+      }, 1000);
+      $('.content').animate({
+        marginLeft: "150px",
+        opacity: "1"
+      }, 1000);
+      sidebarStatus = true;
+    }
+    else {
+      $('.sidebar').animate({
+        marginLeft: "-150px",
+        opacity: "1"
+      }, 1000);
+      $('.content').animate({
+        marginLeft: "0px",
+        opacity: "1"
+      }, 1000);
+      sidebarStatus = false;
+    }
+  });
+});
+</script>
+<style>.content {
+  padding-left: 40px;
+  top:0;
+  height:120px;
+   background-color: green;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  background: black;
+}
+
+.sidebar {
+  position: absolute;
+  top:0;
+  background: silver;
+  width: 175px;
+  color: black;
+  margin-left: -150px;
+  height: 100%;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 150px;
+  border-right: 1px solid #333;
+}
+
+.sidebar-list li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+</style>

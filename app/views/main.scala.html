@@ -1,0 +1,100 @@
+@(cursos: List[Curso],user: Usuario)(content: Html)
+
+
+<html>
+    <head>
+        <title>@user.nombre @user.apellido Home</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/home.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap/bootstrap.css")">
+        
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/underscore.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/backbone.js")"></script>    	
+    	<script type="text/javascript" src="@routes.Assets.at("javascripts/main.js")"></script>
+   
+    </head>
+    <body>
+    <!-- encabezado info usuario  -->
+	    <header>
+	            <a href="#" id="logo"><span>M</span>-Scol</a>
+	            <dl id="user">
+	                <dt>@user.nombre <span>(@user.mail)</span></dt>
+	                <dd>
+	                    <a href="@routes.Application.logout()">Logout</a>
+	                </dd>
+	            </dl>
+        </header>
+        <!-- barra lateral izquierda -->
+        <nav class="leftbar">
+        	<div class="trogle-leftbar-btn"><span class="glyphicon glyphicon-chevron-right hiddebarbtn"></span><span class="glyphicon glyphicon-chevron-left showbarbtn"></span></div>
+            <h4 class="dashboard"><a href="/profesor">Dashboard</a></h4>
+            <ul id="projects">
+                @cursos.groupBy(_.nombre).map {
+                    case (group, cursos) => {
+                        @views.html.cursos.indexCurso(group, cursos)
+                    }
+                }
+            </ul>
+            <h4 class="dashboard"><a href="preguntas">Crear Pregunta</a></h4>
+            
+        </nav>
+    	<section id="main" class="mainContent">
+        @content
+        </section>
+    </body>
+</html>
+
+
+            
+<style type="text/css">
+.trogle-leftbar-btn{
+              position: absolute;
+              top: 2px;
+              right: 2px;
+              width: 30px;
+              height: 30px;
+              border:1px solid black;
+              font-size:25;
+              cursor:pointer;
+            }
+  .hiddebarbtn{
+  		display:none;
+  }         
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+var velocidad=1000;
+var velocidadHide=0;
+  sidebarStatus = false;
+  $('.trogle-leftbar-btn').click(function() {
+    if (sidebarStatus == false) {
+      $('.leftbar').animate({
+        marginLeft: "0px",
+        opacity: "1"
+      }, velocidad);
+      $('.mainContent').animate({
+        marginLeft: "0px",
+        opacity: "1"
+      }, velocidad);
+      $(".hiddebarbtn").hide(velocidadHide);
+       $(".showbarbtn").show(velocidad);
+      sidebarStatus = true;
+    }
+    else {
+      $('.leftbar').animate({
+        marginLeft: "-190px",
+        opacity: "1"
+      }, velocidad);
+      $('.mainContent').animate({
+        marginLeft: "-190px",
+        opacity: "1"
+      }, velocidad);
+      $(".showbarbtn").hide(velocidadHide);
+      $(".hiddebarbtn").show(velocidad);
+      sidebarStatus = false;
+    }
+  });
+});
+</script>

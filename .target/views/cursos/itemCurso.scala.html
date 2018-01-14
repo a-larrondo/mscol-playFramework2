@@ -1,0 +1,16 @@
+@(curso: Curso)
+
+<li data-project="@curso.idCurso">
+    <br>
+   &ensp; <a class="name" href="#@routes.Asignaturas.index(curso.idCurso)">@curso.nombre</a>
+   
+   <article  class="alumnos" id="alumnos">
+     <br>
+   &ensp; <a class="name" href="#@routes.Alumnos.index(curso.idCurso)">Alumnos</a>
+    
+            
+        
+    </article>
+   
+    <span class="loader"></span>
+</li>

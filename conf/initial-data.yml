@@ -1,0 +1,2172 @@
+# Usuarios
+
+Usuarios:
+
+  - !!models.Usuario
+      idUsuario: 1
+      mail: elton@sample.com
+      rut: 19
+      nombre: sir elton
+      apellido: john
+      genero: H
+      clave: test
+      habilitado: true
+
+  - !!models.Usuario
+      idUsuario: 2
+      mail: freddi@sample.com
+      rut: 15
+      nombre: sir freddi
+      apellido: mercury
+      genero: H
+      clave: test
+      habilitado: true   
+
+  - !!models.Usuario
+      idUsuario: 3
+      mail: jonathan@sample.com
+      rut: 10 
+      nombre: sir jonathan 
+      apellido: ross
+      genero: H
+      clave: test
+      habilitado: true    
+
+  - !!models.Usuario
+      idUsuario: 4
+      mail: kate@sample.com
+      rut: 10 
+      nombre: kate 
+      apellido: middleton
+      genero: M
+      clave: test
+      habilitado: true 
+      #perfil: !!models.Perfil
+       #         idPerfil: 1  
+
+Perfiles:        
+
+- !!models.Perfil
+        idPerfil: 1
+        descripcion: coordinador
+        miembros:
+            - !!models.Usuario
+                idUsuario: 1
+            - !!models.Usuario    
+                idUsuario: 2        
+
+- !!models.Perfil
+        idPerfil: 2
+        descripcion: profesor
+        miembros:
+            - !!models.Usuario
+                idUsuario: 1
+            - !!models.Usuario    
+                idUsuario: 2        
+
+- !!models.Perfil
+        idPerfil: 3
+        descripcion: alumno
+        miembros:
+            - !!models.Usuario
+                idUsuario: 3 
+            - !!models.Usuario
+                idUsuario: 4 
+            
+
+Coordinadores:
+- !!models.Coordinador
+        idCoordinador: 1
+        usuario: !!models.Usuario
+                 idUsuario: 2                     
+Cursos:
+- !!models.Curso
+        idCurso: 1
+        nivel: 10
+        nombre: Segundo medio 
+        aYear: 2013-01-02
+        tipo_pregunta: !!models.TipoPregunta
+                    idTipoPregunta: 1 
+
+- !!models.Curso
+        idCurso: 2
+        nivel: 8
+        nombre: Octavo 
+        aYear: 2013-01-02
+        tipo_pregunta: !!models.TipoPregunta
+                    idTipoPregunta: 1
+
+- !!models.Curso
+        idCurso: 3
+        nivel: 9
+        nombre: Primero medio 
+        aYear: 2013-01-02 
+        tipo_pregunta: !!models.TipoPregunta
+                    idTipoPregunta: 1  
+
+Profesores:
+- !!models.Profesor
+        idProfesor: 1
+        fechaInicio:    2013-09-15
+        fechaExpiracion:    2014-01-15
+        usuario: !!models.Usuario
+                    idUsuario: 2        
+
+
+- !!models.Profesor
+        idProfesor: 10
+        fechaInicio:    2013-09-17
+        fechaExpiracion:    2014-01-7
+        usuario: !!models.Usuario
+                    idUsuario: 1        
+        coordinador: !!models.Coordinador 
+                    idCoordinador: 1  
+
+Asignaturas:
+
+- !!models.Asignatura
+        idAsignatura: 1
+        nombreAsignatura: Castellano
+        aYear: 2013-01-02
+        curso: !!models.Curso
+                idCurso: 1
+        #tipo_pregunta_a: !!models.TipoPregunta
+        #            idTipoPregunta: 1
+        #profesor: !!models.Profesor
+        #        idProfesor: 1            
+
+- !!models.Asignatura
+        idAsignatura: 2
+        nombreAsignatura: Matematicas
+        aYear: 2013-01-10
+        curso: !!models.Curso
+                idCurso: 1
+        #tipo_pregunta_a: !!models.TipoPregunta
+        #            idTipoPregunta: 1 
+        #profesor: !!models.Profesor
+        #        idProfesor: 10         
+
+- !!models.Asignatura
+        idAsignatura: 3
+        nombreAsignatura: Historia
+        aYear: 2013-01-15
+        curso: !!models.Curso
+                idCurso: 1
+        #tipo_pregunta_a: !!models.TipoPregunta
+        #            idTipoPregunta: 1
+        #profesor: !!models.Profesor
+        #        idProfesor: 10
+Secciones:
+
+- !!models.Seccion
+       id_seccion: 1
+       nombre_seccion: Segundo medio A
+       curso: !!models.Curso
+               idCurso: 1
+
+
+AsignaturaSecciones:
+
+- !!models.AsignaturaSeccion
+       nombre_asignatura_seccion: Matematicas Segundo medio A
+       profesor: !!models.Profesor
+               idProfesor: 1
+       seccion: !!models.Seccion
+               id_seccion: 1
+       curso: !!models.Curso
+               idCurso: 1
+       asignatura: !!models.Asignatura
+               idAsignatura: 2
+
+- !!models.AsignaturaSeccion
+       nombre_asignatura_seccion: Lenguaje Segundo medio A
+       profesor: !!models.Profesor
+               idProfesor: 1
+       seccion: !!models.Seccion
+               id_seccion: 1
+       curso: !!models.Curso
+               idCurso: 1
+       asignatura: !!models.Asignatura
+               idAsignatura: 1
+
+Unidades:
+
+- !!models.Unidad
+      idUnidad: 1
+      nombreUnidad:  El lenguaje como acción.
+      aYearUnidad: 2013-01-04 
+      asignatura: !!models.Asignatura
+                idAsignatura: 1   
+
+- !!models.Unidad
+      idUnidad: 2
+      nombreUnidad:  Modalizaciones discursivas.
+      aYearUnidad: 2013-01-07 
+      asignatura: !!models.Asignatura
+                idAsignatura: 1
+
+- !!models.Unidad
+      idUnidad: 3
+      nombreUnidad:  Geometría .
+      aYearUnidad: 2013-01-09 
+      asignatura: !!models.Asignatura
+                idAsignatura: 2
+
+- !!models.Unidad
+      idUnidad: 4
+      nombreUnidad:  Álgebra y funciones .
+      aYearUnidad: 2013-01-10 
+      asignatura: !!models.Asignatura
+                idAsignatura: 2
+
+- !!models.Unidad
+      idUnidad: 5
+      nombreUnidad:  Geografía Económica de Chile.
+      aYearUnidad: 2013-01-01 
+      asignatura: !!models.Asignatura
+                idAsignatura: 3
+
+- !!models.Unidad
+      idUnidad: 6
+      nombreUnidad:  Actividades económicas de la población .
+      aYearUnidad: 2013-01-02 
+      asignatura: !!models.Asignatura
+                idAsignatura: 3
+
+- !!models.Unidad
+      idUnidad: 7
+      nombreUnidad:  América Latina contemporánea.
+      aYearUnidad: 2013-01-13 
+      asignatura: !!models.Asignatura
+                idAsignatura: 3
+
+TiposPreguntas:
+
+- !!models.TipoPregunta
+      idTipoPregunta: 1
+      nombreTipo: MINEDUC
+      tipoPreguntaHabilitado: true
+
+- !!models.TipoPregunta
+      idTipoPregunta: 2
+      nombreTipo: SIMCE
+      tipoPreguntaHabilitado: true      
+
+- !!models.TipoPregunta
+      idTipoPregunta: 3
+      nombreTipo: PSU
+      tipoPreguntaHabilitado: true 
+Categorias: 
+- !!models.Categoria
+      id_categoria: 1
+      nombre_categoria: Segundo Medio
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1  
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 1
+
+- !!models.Categoria
+      id_categoria: 2
+      nombre_categoria: Unidad 1
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 1
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Segundo Medio 
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 2                
+
+- !!models.Categoria
+      id_categoria: 3
+      nombre_categoria: Unidad 2
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 1
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Segundo Medio         
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 2 
+
+- !!models.Categoria
+      id_categoria: 4
+      nombre_categoria: Unidad 3
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 1
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Segundo Medio 
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 2 
+
+- !!models.Categoria
+      id_categoria: 5
+      nombre_categoria: Unidad 4
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 1
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Segundo Medio
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 2 
+
+- !!models.Categoria
+      id_categoria: 6
+      nombre_categoria: Numeros
+      categoriaHabilitada: true 
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1     
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 2
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Unidad 1           
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 3
+
+- !!models.Categoria
+      id_categoria: 7
+      nombre_categoria: Algebra y funciones
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 3
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Unidad 1            
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 3
+
+- !!models.Categoria
+      id_categoria: 8
+      nombre_categoria: Geometria
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 4
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Unidad 1             
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 3                
+
+- !!models.Categoria
+      id_categoria: 9
+      nombre_categoria: Probabilidad y Estadistica
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+      #id_categoria_superior: !!models.Categoria
+      #          id_categoria: 5
+      #nombre_categoria_superior: !!models.Categoria
+      #          nombre_categoria: Unidad 1            
+      #id_categoria: !!models.JerarquiaTipoPregunta          
+      #          id_jerarquia: 3    
+
+- !!models.Categoria
+      id_categoria: 10
+      nombre_categoria: Potencias con exponente racional 
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1  
+
+- !!models.Categoria
+      id_categoria: 11
+      nombre_categoria: Raices  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 12
+      nombre_categoria: Logaritmos 
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 13
+      nombre_categoria: Volumen de esfera
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 14
+      nombre_categoria: Funcion cuadratica  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 15
+      nombre_categoria: Ecuacion cuadratica  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 16
+      nombre_categoria: Grafica de funcion cuadratica  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 17
+      nombre_categoria: Funcion inversa  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 18
+      nombre_categoria: Cambio porcentual  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 19
+      nombre_categoria: Razones trigonometricas  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 20
+      nombre_categoria: Variable aleatoria  
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 21
+      nombre_categoria: Funcion distribucion   
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 22
+      nombre_categoria: Combinatoria    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1 
+
+- !!models.Categoria
+      id_categoria: 23
+      nombre_categoria: Permutacion    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 24
+      nombre_categoria: Probabilidad    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 25
+      nombre_categoria: Resolver problemas    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 27
+      nombre_categoria: Representar    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 28
+      nombre_categoria: Modelar    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 29
+      nombre_categoria: Comunicar y argumentar    
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 30
+      nombre_categoria: calculos estimaciones numeros reales    
+      descripcion: Realizar calculos y estimaciones que involucren operaciones con numeros reales
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 31
+      nombre_categoria: relaciones entre potencias
+      descripcion: "Mostrar que comprenden las relaciones entre potencias, raices enesimas y logaritmo"
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 32
+      nombre_categoria: funcion cuadrática f(x)= ax2...
+      descripcion: Mostrar que comprenden la función cuadrática f(x)= ax2  + bx + c (a distinta 0)
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 33
+      nombre_categoria: Resolver ecuaciones cuadraticas 
+      descripcion: "Resolver, de manera concreta, pictórica y simbólica o usando herramientas tecnológicas, ecuaciones cuadráticas donde de la forma"
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 34
+      nombre_categoria: Resolver ecuaciones cuadraticas 
+      descripcion: Mostrar que comprenden la inversa de una funcion
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 35
+      nombre_categoria: Cambio porcentual constante
+      descripcion: Explicar el cambio porcentual constante en intervalos de tiempo
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 36
+      nombre_categoria: Formula area y volumen de esfera
+      descripcion: Desarrollar la formula del area de la superficie y el volumen de la esfera
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 37
+      nombre_categoria: Mostrar razones trigonometricas...  
+      descripcion: "Mostrar que comprenden las razones trigonometricas de seno, coseno y tangente en triangulos rectangulos"
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 38
+      nombre_categoria: Aplicar las razones trigonométricas...
+      descripcion: Aplicar las razones trigonométricas en diversos contextos en la composición y descomposición de vectores y determinar las proyecciones de vectores.
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 39
+      nombre_categoria: Comprenden variables... 
+      descripcion: Mostrar que comprenden las variables aleatorias finitas
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 40
+      nombre_categoria: Utilizar permutaciones...
+      descripcion: Utilizar permutaciones y la combinatoria sencilla para calcular probabilidades de eventos y resolver problemas.
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+- !!models.Categoria
+      id_categoria: 41
+      nombre_categoria: Probabilidad en la sociedad... 
+      descripcion: Mostrar que comprenden el rol de la probabilidad en la sociedad
+      categoriaHabilitada: true
+      tipo_Pregunta: !!models.TipoPregunta
+                idTipoPregunta: 1
+
+
+Preguntas:
+
+- !!models.Pregunta
+      idPregunta: 1
+      pregunta: -3 - (-7)*5 =?
+      aYearPregunta: 2013-01-14 
+      usuario: !!models.Usuario
+                idUsuario: 2
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 2
+      pregunta: "Las medidas de los lados de un triángulo están en la razón 3 : 5 : 7 y su perímetro es 45 cm. Las longitudes de sus lados, en centímetros, son ?"
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 3
+      pregunta:  El cuadrado de ( 1/3 + 3) es igual a ?
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 4
+      pregunta:  "Un bus tiene sus 30 asientos de capacidad ocupados, cada uno por una persona y además, lleva 10 personas de pie. Si en un paradero se baja el 20% de las personas que van sentadas y el 30% de las personas que van de pie y suben, en ese paradero, 2 personas, ¿cuántas personas quedarían de pie si se ocupan todos los asientos con una persona?"
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 5
+      pregunta: "La tabla adjunta muestra el consumo de electricidad (medido en kWh) de una casa, en algunos meses del año pasado. De acuerdo a la tabla, ¿cuál(es) de las siguientes afirmaciones es (son) verdadera(s), con respecto al consumo? I) La mayor variación entre meses consecutivos, en valor absoluto, se produjo entre agosto y septiembre. II) La variación mensual, en valor absoluto, entre mayo y junio es la misma que entre junio y julio. III) En noviembre no hubo consumo."
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 6
+      pregunta: "¿Cuál de los siguientes números multiplicado por 0,01 resulta la unidad?"
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 7
+      pregunta: "Una persona no recuerda su clave secreta de 4 dígitos, pero sabe que la clave tiene dos dígitos iguales. De los dígitos distintos, uno tiene 5 unidades más que el otro y además, uno de los dígitos distintos es la tercera parte del dígito que se repite. ¿Cuál(es) de los siguientes números podría(n) ser su clave secreta?      I)3316            II) 8728              III) 8939"
+      aYearPregunta: 2013-01-17 
+      usuario: !!models.Usuario
+                idUsuario: 2 
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Representar  
+                  id_categoria: 27                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 8
+      pregunta: "¿En cuál de las siguientes tablas, las variables P y Q son directamente proporcionales?"
+      aYearPregunta: 2013-01-14 
+      usuario: !!models.Usuario
+                idUsuario: 2
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Representar  
+                  id_categoria: 27                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 9
+      pregunta: "Considerando que para todo número entero positivo k, se tiene que 1/k(1+k) = 1/k - 1/(1+k), entonces la suma de los primeros 99 términos de la forma 1/k(1+k), con k un número entero positivo, es decir, 1/(1*2) + 1/(2*3) + 1/(3*4) + 1/(4*5) + ….. + 1/(98*99) + 1/(99*100), es:"
+      aYearPregunta: 2013-01-14 
+      usuario: !!models.Usuario
+                idUsuario: 2
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+- !!models.Pregunta
+      idPregunta: 10
+      pregunta: "Si el a% del 5% de b es c y el b% del 10% de c es a, entonces la relación entre a y c, es"
+      aYearPregunta: 2013-01-14 
+      usuario: !!models.Usuario
+                idUsuario: 2
+      categoriasPregunta: 
+              - !!models.Categoria
+              #id de segundo medio
+                  id_categoria: 1
+              - !!models.Categoria
+              #id unidad
+                  id_categoria: 2
+              - !!models.Categoria
+              #id curso
+                  id_categoria: 6
+              - !!models.Categoria
+              #Resolver problemas  
+                  id_categoria: 25                  
+              - !!models.Categoria
+              #calculos estimaciones numeros reales   
+                  id_categoria: 30
+
+Alternativas:
+
+- !!models.Alternativa
+      idAlternativa: 1
+      alternativaTxt: -20
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 1
+
+- !!models.Alternativa
+      idAlternativa: 2
+      alternativaTxt: -38
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 1
+
+- !!models.Alternativa
+      idAlternativa: 3
+      alternativaTxt:  -50
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 1
+
+- !!models.Alternativa
+      idAlternativa: 4
+      alternativaTxt: 20
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 1
+
+- !!models.Alternativa
+      idAlternativa: 5
+      alternativaTxt: 32
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 1
+
+- !!models.Alternativa
+      idAlternativa: 6
+      alternativaTxt: 6, 10 y 14
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 2
+
+- !!models.Alternativa
+      idAlternativa: 7
+      alternativaTxt: 6, 10 y 29
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 2
+
+- !!models.Alternativa
+      idAlternativa: 8
+      alternativaTxt: 9, 12 y 24
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 2
+
+- !!models.Alternativa
+      idAlternativa: 9
+      alternativaTxt: 9, 15 y 21
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 2 
+
+- !!models.Alternativa
+      idAlternativa: 10
+      alternativaTxt: 13, 15 y 17
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 2
+
+- !!models.Alternativa
+      idAlternativa: 11
+      alternativaTxt:  9/82
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 3 
+
+- !!models.Alternativa
+      idAlternativa: 12
+      alternativaTxt: 6/8
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 3 
+
+- !!models.Alternativa
+      idAlternativa: 13
+      alternativaTxt:  9/16
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 3 
+
+- !!models.Alternativa
+      idAlternativa: 14
+      alternativaTxt:  6/20
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 3 
+
+
+- !!models.Alternativa
+      idAlternativa: 15
+      alternativaTxt:  9/100
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 3
+
+
+- !!models.Alternativa
+      idAlternativa: 16
+      alternativaTxt: 3
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 4
+
+- !!models.Alternativa
+      idAlternativa: 17
+      alternativaTxt: 1
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 4
+
+
+- !!models.Alternativa
+      idAlternativa: 18
+      alternativaTxt: 7
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 4
+
+
+- !!models.Alternativa
+      idAlternativa: 19
+      alternativaTxt: 9
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 4
+
+
+- !!models.Alternativa
+      idAlternativa:  20
+      alternativaTxt: Ninguna, irian todas sentadas.
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 4
+
+- !!models.Alternativa
+      idAlternativa: 21
+      alternativaTxt: Solo III
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 5
+
+
+- !!models.Alternativa
+      idAlternativa: 22
+      alternativaTxt: Solo I y II
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 5
+
+
+- !!models.Alternativa
+      idAlternativa: 23
+      alternativaTxt: Solo I y III
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 5
+
+
+- !!models.Alternativa
+      idAlternativa: 24
+      alternativaTxt: Solo II y III
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 5
+
+- !!models.Alternativa
+      idAlternativa: 25
+      alternativaTxt: I, II y III
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 5
+
+
+- !!models.Alternativa
+      idAlternativa: 26
+      alternativaTxt:  100
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 6
+
+
+- !!models.Alternativa
+      idAlternativa: 27
+      alternativaTxt: 10
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 6
+
+
+- !!models.Alternativa
+      idAlternativa: 28
+      alternativaTxt: 1
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 6
+
+- !!models.Alternativa
+      idAlternativa: 29
+      alternativaTxt: 0,1
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 6
+
+
+- !!models.Alternativa
+      idAlternativa: 30
+      alternativaTxt: 00,1
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 6
+
+
+- !!models.Alternativa
+      idAlternativa: 31
+      alternativaTxt: Solo I
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 7
+
+
+- !!models.Alternativa
+      idAlternativa: 32
+      alternativaTxt: Solo I y II 
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 7
+
+- !!models.Alternativa
+      idAlternativa: 33
+      alternativaTxt: Solo I y III 
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 7
+
+
+- !!models.Alternativa
+      idAlternativa: 34
+      alternativaTxt: I, II y III
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 7
+
+
+- !!models.Alternativa
+      idAlternativa: 35
+      alternativaTxt: Ninguno de ellos.
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 7
+
+
+- !!models.Alternativa
+      idAlternativa: 36
+      alternativaTxt: images/p8A1.png
+      es_correcta: false
+      es_imagen: true
+      pregunta: !!models.Pregunta
+                idPregunta: 8
+
+- !!models.Alternativa
+      idAlternativa: 37
+      alternativaTxt: images/p8A2.png
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 8
+
+
+- !!models.Alternativa
+      idAlternativa: 38
+      alternativaTxt: images/p8A3.png
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 8
+
+
+- !!models.Alternativa
+      idAlternativa: 39
+      alternativaTxt: images/p8A4.png
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 8
+
+
+- !!models.Alternativa
+      idAlternativa: 40
+      alternativaTxt: images/p8A5.png
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 8
+
+- !!models.Alternativa
+      idAlternativa: 41
+      alternativaTxt: 100/101
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 9
+
+
+- !!models.Alternativa
+      idAlternativa: 42
+      alternativaTxt: 99/100
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 9
+
+
+- !!models.Alternativa
+      idAlternativa: 43
+      alternativaTxt: 101/100
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 9
+
+
+- !!models.Alternativa
+      idAlternativa: 44
+      alternativaTxt: (99*100-1)/(99*100)
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 9
+
+- !!models.Alternativa
+      idAlternativa: 45
+      alternativaTxt: ninguno de los valores anteriores.
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 9
+
+
+- !!models.Alternativa
+      idAlternativa: 46
+      alternativaTxt: a^2 = 2c^2
+      es_correcta: true
+      pregunta: !!models.Pregunta
+                idPregunta: 10
+
+
+- !!models.Alternativa
+      idAlternativa: 47
+      alternativaTxt: a^2 = 2c
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 10
+
+
+- !!models.Alternativa
+      idAlternativa: 48
+      alternativaTxt: a = 2c
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 10
+
+- !!models.Alternativa
+      idAlternativa: 49
+      alternativaTxt: a = c
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 10
+
+
+- !!models.Alternativa
+      idAlternativa: 50
+      alternativaTxt: a^2 = (2c)^2
+      es_correcta: false
+      pregunta: !!models.Pregunta
+                idPregunta: 10
+
+Alumnos:
+- !!models.Alumno
+      idAlumno:
+      usuario: !!models.Usuario
+                idUsuario: 3 
+      seccion: !!models.Seccion
+                id_seccion: 1          
+
+- !!models.Alumno
+      idAlumno:
+      usuario: !!models.Usuario
+                idUsuario: 4                                
+      seccion: !!models.Seccion
+                id_seccion: 1     
+
+JerarquiaTipoPreguntas:
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 1
+      nombreJerarquia: Curso
+      jerarquia_habilitada: true
+      numero_jerarquia: 1
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 2
+      nombreJerarquia: Unidad
+      jerarquia_habilitada: true
+      numero_jerarquia: 2
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      idClasificacionSuperior: !!models.JerarquiaTipoPregunta
+                id_jerarquia: 1
+      nombreClasificacion_Superior: !!models.JerarquiaTipoPregunta
+                nombreJerarquia: Curso 
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 3
+      nombreJerarquia: Eje
+      jerarquia_habilitada: true
+      numero_jerarquia: 3
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      idClasificacionSuperior: !!models.JerarquiaTipoPregunta
+                id_jerarquia: 2
+      nombreClasificacion_Superior: !!models.JerarquiaTipoPregunta
+                nombreJerarquia: Unidad 
+
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 4
+      nombreJerarquia: Sub Eje
+      jerarquia_habilitada: true
+      numero_jerarquia: 4
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      idClasificacionSuperior: !!models.JerarquiaTipoPregunta
+                id_jerarquia: 3
+      nombreClasificacion_Superior: !!models.JerarquiaTipoPregunta
+                nombreJerarquia: Eje  
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 5
+      nombreJerarquia: Objetivo de Aprendizaje
+      jerarquia_habilitada: true
+      numero_jerarquia: 4
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      idClasificacionSuperior: !!models.JerarquiaTipoPregunta
+                id_jerarquia: 3
+      nombreClasificacion_Superior: !!models.JerarquiaTipoPregunta
+                nombreJerarquia: Eje  
+
+- !!models.JerarquiaTipoPregunta
+      id_jerarquia: 6
+      nombreJerarquia: Habilidad
+      jerarquia_habilitada: true
+      numero_jerarquia: 1
+      seleccion_unica: false
+      tipo_Preguntas: !!models.TipoPregunta
+                idTipoPregunta: 1 
+      idClasificacionSuperior: !!models.JerarquiaTipoPregunta
+                id_jerarquia: 
+      nombreClasificacion_Superior: !!models.JerarquiaTipoPregunta
+                nombreJerarquia:   
+
+AsociacionesCategorias:
+
+- !!models.AsociacionesCategoria
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2      
+      categoria_id: !!models.Categoria
+                id_categoria: 1          
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria:           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria:  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 1
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 2          
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1            
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio   
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 2
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 3          
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 2
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 4          
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 2                                
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 5          
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 2
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 6         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 2           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Unidad 1 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 3 
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 7         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 3           
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Unidad 2 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 3
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 8        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 4          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Unidad 3
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 3
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria:
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 9         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 5          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Unidad 4
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 3 
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Potencias con exponente racional
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 10         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: NUMEROS
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Raices
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 11        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: NUMEROS
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Logaritmos
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 12        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: NUMEROS
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4 
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Volumen de esfera
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 13         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: NUMEROS
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria:Funcion cuadratica 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 14         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4 
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Ecuacion cuadratica 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 15        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Grafica de funcion cuadratica
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 16         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4 
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Funcion inversa 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 17         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Cambio porcentual
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 18         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: GEOMETRÍA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Razones trigonometricas
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 19         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: GEOMETRÍA
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Variable aleatoria
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 20         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADISTICA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Funcion distribucion
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 21         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADISTICA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Combinatoria
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 22         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADISTICA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Permutacion
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 23         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADISTICA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Probabilidad 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 24         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADISTICA 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Resolver problemas
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2   
+      categoria_id: !!models.Categoria
+                id_categoria: 25         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 6
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Representar 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 27         
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 6
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Modelar 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 28        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 6
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Comunicar y argumentar 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 29        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 1          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Segundo Medio 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 6
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: calculos estimaciones numeros reales
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2    
+      categoria_id: !!models.Categoria
+                id_categoria: 30        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Numeros 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: relaciones entre potencias  
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 31        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 6          
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: Numeros 
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: funcion cuadrática f(x)= ax2...
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2    
+      categoria_id: !!models.Categoria
+                id_categoria: 32        
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Resolver ecuaciones cuadraticas
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2    
+      categoria_id: !!models.Categoria
+                id_categoria: 33       
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Resolver ecuaciones cuadraticas
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2    
+      categoria_id: !!models.Categoria
+                id_categoria: 34       
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Cambio porcentual constante 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 35      
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 7         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: ALGEBRA Y FUNCIONES  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Formula area y volumen de esfera
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 36     
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 8         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: GEOMETRIA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Mostrar razones trigonometricas...
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2
+      categoria_id: !!models.Categoria
+                id_categoria: 37     
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 8         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: GEOMETRIA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Aplicar las razones trigonométricas... 
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 38     
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 8         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: GEOMETRIA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Comprenden variables...
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2 
+      categoria_id: !!models.Categoria
+                id_categoria: 39     
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 9         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADÍSTICA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: Utilizar permutaciones...
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2  
+      categoria_id: !!models.Categoria
+                id_categoria: 40    
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 9         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADÍSTICA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4
+
+- !!models.AsociacionesCategoria
+      #idAsociacion:
+      #codigo:
+      #categoriaNombre: !!models.Categoria
+      #          nombre_categoria: probabilidad en la sociedad...
+      curso: !!models.Curso
+                idCurso: 1   
+      asignatura: !!models.Asignatura
+                idAsignatura: 2   
+      categoria_id: !!models.Categoria
+                id_categoria: 41   
+      tipo_pregunta_id: !!models.TipoPregunta
+                idTipoPregunta: 1
+      id_categoria_superior: !!models.Categoria
+                id_categoria: 9         
+      nombre_categoria_superior: !!models.Categoria
+                nombre_categoria: PROBABILIDAD Y ESTADÍSTICA  
+      id_categoria_anterior: !!models.Categoria
+                id_categoria:            
+      jerarquiaTipoPregunta: !!models.JerarquiaTipoPregunta          
+                id_jerarquia: 4

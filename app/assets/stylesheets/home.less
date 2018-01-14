@@ -1,0 +1,29 @@
+@import 'libs/_reset.less';
+@import 'util/_homeConstants.less';  // colores fuentes y medidas
+@import 'util/_elements.less';       // stilo elementos botones paneles
+@import 'util/_helpers.less';
+
+
+
+body {
+    background: @mainBackground;
+    color: @mainColor;
+    font: @defaultFont;
+    -webkit-font-smoothing: antialised;
+    -webkit-user-select: none;
+}
+
+a {
+    color: @links;
+    text-decoration: none;
+    &:hover {
+        color: @linksHover;
+    }
+}
+
+
+@import 'main/_headerBar.less'; //diseño barra superior
+@import 'main/_navMenu.less';  
+@import 'main/_layout.less';
+@import 'main/_breadcrumb.less';  
+@import 'main/_content.less';  

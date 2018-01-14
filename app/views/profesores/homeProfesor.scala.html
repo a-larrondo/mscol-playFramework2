@@ -1,0 +1,17 @@
+@(user: Usuario,cursos: List[Curso])
+@main(cursos,user){
+<header>
+        <hgroup>
+        	
+				<p class="first"><a href="#" style="z-index:9;">Home</a></p>
+				<p><a href="#" style="z-index:8;">Cursos</a></p>
+			
+			<!-- 
+            <h1>Profesor</h1>
+            <h2>Cursos</h2>
+            -->
+           
+        </hgroup>
+    </header>
+    @views.html.cursos.indexCurso("2012", cursos)
+}

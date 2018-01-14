@@ -1,0 +1,225 @@
+@(pruebaForm: Form[Prueba],asignaturas : List[Asignatura])
+@import helper._
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+ <script type="text/javascript" src="@routes.Application.javascriptRoutes"></script> 
+ 
+<!-- CSS -->
+<style type="text/css">
+.square {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: center;
+    line-height: 50px;
+   
+    background-color: lightblue;
+}
+.preguntaDrop {
+    width: 590px;
+    height: 150px;
+    border: 1px solid black;
+    margin: 10px;
+    float: left;
+    line-height:50%;
+     z-index: 0 !important; 
+    
+}
+ 
+.droppable {
+    width: 700px;
+    border: 1px dotted gray;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: center;
+    display: table;
+    border-spacing: 5px;
+    background-color: lightgray;
+    
+    
+}
+#preguntas div.ui-draggable-dragging {
+  -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+  box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+}
+.connectedSortable{
+	width: 100px;
+    height: 150px;
+    overflow: auto;
+}
+.prueba{
+	width: 95%;
+    height: 75%;
+    margin-bottom: 10px;
+}
+#test{
+width: 90%;
+    height: 450px;
+    margin-left: 10px;
+
+}
+</style>
+ 
+ 
+<!-- Javascript -->
+<script  type="text/javascript" >
+	 var tabTitle = "pagina",
+	 tabContent = $( "#tab_content" ),
+      tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
+	     tabCounter = 2; 
+$(function () {
+var counter=0;
+var test;
+createAcordion();
+var test = $( "#test" ).tabs();
+$( "#test-1" ).sortable();
+ $( "#test-1" ).disableSelection();
+ //$( "#preguntas" ).accordion();
+ $('#preguntas').accordion({
+       
+});
+//$('#preguntas').on( "accordionactivate", function( event, ui ) {console.log(ui);} );
+
+$('#preguntas').on( "accordionbeforeactivate", function( event, ui ) {
+var idUnidad=$(ui.newHeader[0]).children('a').attr('href');
+	//console.log(ui.newPanel[0].id);	
+	if($('#'+ui.newPanel[0].id+' ul li').length<1){	
+		var idDiv='#'+ui.newPanel[0].id+' ul';
+		getPregunta(idUnidad,idDiv);
+		//console.log("getPreguntas="+preguntas);	  
+		//$('#'+ui.newPanel[0].id+' ul li').remove(); 
+		//$('<li class="ui-state-default">1</li>').attr( 'id', 'preguntaId1' ).appendTo( '#'+ui.newPanel[0].id+' ul' )
+		//$("#"+ui.newPanel[0].id+" ul").append('<li><a href="/user/messages"><span class="tab">Message Center</span></a></li>');
+	}
+	else{
+	console.log("ya tiene elementos");
+	}
+});
+var addPage = function() {
+		$( "#sortable1, #sortable2").sortable({
+				connectWith: ".connectedSortable",
+				receive: function(event, ui) {				            
+				     if ($(this).children().length > 10) {				                
+				         $(ui.sender).sortable('cancel');
+				     }
+				     else{console.log("cantidad de elementos="+$(this).children().length)}
+				}
+		 }).disableSelection(); 
+}
+var getPregunta = function(idUnidad,idDiv) {
+	    var html="";
+	   return jsRoutes.controllers.Preguntas.getPreguntas(idUnidad).ajax({
+	    	   success: function(data) {	    	   
+		          $.each( data, function( key, val ) {
+		          var pregunta="";
+		   			  pregunta= '<li id="' + key + '"class="ui-state-default"><div>' + val.pregunta;		               
+		               pregunta+='<input type="hidden" id="preguntas['+counter+']_idPregunta" name="preguntas['+counter+'].idPregunta" value="'+val.idPregunta+'"></div></li>' ;
+		               html+=pregunta;	
+		               counter=counter+1;	                
+				  });
+				  $(html).appendTo(idDiv);
+				  //console.log(html);				 
+	          }
+	    });		
+}
+
+test.delegate( "span.ui-icon-close", "click", function() {
+      var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+      $( "#" + panelId ).remove();
+      test.tabs( "refresh" );
+    });
+    
+function addTab() {
+      var label = tabTitle +" "+tabCounter || "pagina " + tabCounter,
+        id = "test-" + tabCounter,
+        li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+        tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+ 
+      test.find( ".ui-tabs-nav" ).append( li );
+      test.append( "<div id='" + id + "'><ul id='sortable1' class='connectedSortable ui-sortable'></ul></div>" );
+      test.tabs( "refresh" );
+      tabCounter++;
+      addPage();
+    }
+    
+	$("#nuevaPagina").click(function(){
+	addTab();    
+	
+	});    
+       
+});
+      
+</script>
+ 
+<!-- HTML -->
+<div id="pruebaContent">
+
+	<div style="float:left;margin-left:5px;">
+	    <div id="prueba" class="droppable"><h1>Prueba</h1>
+	        
+	        <div id="test" style="float:left" > 
+				<ul>
+					<li><a href='#test-1'>prueba nueva</a> </li>	
+										
+				</ul>
+				@helper.form(action = routes.Pruebas.crearPrueba, 'id -> "pruebaForm") {
+				
+				<div>
+				
+                 </div>
+				<div id='test-1'>
+				@repeat(pruebaForm("preguntas")) { pregunta => 
+             
+				<ul id="sortable1" class="connectedSortable prueba">								
+				</ul>
+				}
+				</div>
+				<input type="submit" class="btn btn-primary" value="Crear">				
+				}	  
+			</div>
+		
+		</div> 	
+	</div>
+	       <SELECT NAME="idAsignatura" id="idAsignatura">                                            
+                 @for(asignatura <- asignaturas) {
+                    <OPTION VALUE="@asignatura.idAsignatura">@asignatura.nombreAsignatura</OPTION>                                  
+                 } 
+                 </SELECT>
+                  
+	<div id="preguntas" style="float:left">
+	
+		
+				 
+	</div>
+</div>
+ 
+ 
+ <script type="text/javascript">
+ 
+		
+	
+		
+var createAcordion = function() { 
+      jsRoutes.controllers.Preguntas.getUnidades($("#idAsignatura option:selected").val()).ajax({
+        success: function(data) {
+	         $.each( data, function( key, val ) {
+	         	var newDiv='<h3><a href="'+val.idUnidad +'">'+val.nombreUnidad +'</a></h3><div id="unidad-'+val.idUnidad+'"><ul id="sortable'+val.idUnidad+'" class="connectedSortable"></ul></div>';
+	   			  $("#preguntas").append(newDiv).accordion('destroy').accordion();
+	               $( "#sortable1, #sortable"+val.idUnidad ).sortable({
+				      connectWith: ".connectedSortable"
+				   }).disableSelection(); 
+			  });
+			   $("#preguntas").accordion("refresh");
+			  
+        },
+        error: function(err) {
+          console.debug("Error of ajax Call");
+		console.debug(err);
+        }
+      })
+    };
+</script>

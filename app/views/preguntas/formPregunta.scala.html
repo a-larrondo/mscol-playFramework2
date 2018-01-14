@@ -1,0 +1,197 @@
+@(preguntaForm: Form[Pregunta], asignaturas : List[Asignatura])
+ <script src="@routes.Assets.at("javascripts/formPregunta.js")" type="text/javascript"></script>
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+   Crear preguntas
+}
+<!-- grupoAlternativas crea una alternativa (public List pregunta.alternativas) -->
+@grupoAlternativas(field: Field, numeroAlternativa: Long ) = {
+
+     <fieldset>
+    <div class="twipsies well alternativa" id="alternativa">     
+    
+
+        	@helper.input(field("alternativaTxt"), '_label -> "texto alternativa" ) {(id, name, value, args)=>
+ 			<input type="text" class="alternativaTxt" id="alternativas_[@numeroAlternativa]_alternativaTxt" name="alternativas[@numeroAlternativa].alternativaTxt" @toHtmlArgs(args)> 			
+ 			}       
+          <div class="chkStl">
+        	<input type="radio" class="chkCorrecta" name="alternativas.esCorrecta" id="alternativas[@numeroAlternativa].esCorrecta" value="TRUE"><label>Es Correcta </label>
+     	  </div>	 
+    </div>
+  </fieldset> 
+}
+
+
+@mainForm(title, nav = "preguntas") {
+ <!-- mensaje en caso error -->   
+    @if(preguntaForm.hasErrors) {
+        <div class="alert-message error">
+            <p><strong>Mmmmmmmm</strong> Algo hay que arreglar</p>
+        </div>
+    }
+  <!-- Inici del formulario crea preguntas -->  
+    @helper.form(action = routes.Preguntas.addPregunta, 'id -> "preguntaForm") {
+      <div id="txt_pregunta" class="row-fluid">
+        <fieldset >
+            <legend>Pregunta</legend>
+             <div class="twipsies well">
+	             <div class="chkStl">
+	             	<input id="evaluar" type="checkbox"  value="EVALUAR"/><label>Evaluar</label>
+	             </div>	
+	             <div class="chkStl"> 	
+	             	<input id="sintetizar" type="checkbox" value="SINTETIZAR"/><label>Sintetizar</label>
+	             </div>
+	             <div class="chkStl"> 	
+	             	<input id="analizar" type="checkbox" value="ANALIZAR"/><label>Analizar</label>
+	        	 </div>
+	        	 <div class="chkStl"> 	
+	        	 	<input id="aplicar" type="checkbox" value="APLICAR"/><label>Aplicar</label>
+	        	 </div>
+	        	 <div class="chkStl"> 	
+	        	 	<input id="comprender" type="checkbox" value="COMPRENDER"/><label>Comprender</label>
+	        	 </div> 	
+	        	 	<input id="conocer" type="checkbox" value="CONOCER"/><label>Conocer</label> 
+	             <div class="chkStl"> 
+	             </div>
+             </div>
+             
+            <div id="encabezado_pregunta">
+	            @textarea(
+	            preguntaForm("pregunta"),
+	               '_class -> "preguntaTxt", 
+	                '_label -> "Pregunta",
+	                '_label_class -> "pregunta_lbl",
+	                 'rows -> 3, 'cols -> 50) 
+               <div class="habilidades1"></div>
+            </div>
+            <div id="justificacion">    
+           @textarea(
+            preguntaForm("justificacion"),
+               '_class -> "justificacionTxt", 
+                '_label -> "Justificacion",
+                '_label_class -> "justificacion_lbl",
+                 'rows -> 3, 'cols -> 50
+                 )   
+                </div>     
+             <div id="desarrollo">      
+            @textarea(
+            preguntaForm("desarrollo"),
+               '_class -> "desarrolloTxt", 
+                '_label -> "desarrollo",
+                '_label_class -> "desarrollo_lbl",
+                 'rows -> 3, 'cols -> 50
+                 )  
+                 </div>           
+     
+         <SELECT NAME="idAsignatura" id="idAsignatura">
+                                            
+                 <!-- carga la lista de asignaturas que fue resivida al cargar la pagina -->
+                 @for(asignatura <- asignaturas) {
+                    <OPTION VALUE="@asignatura.idAsignatura">@asignatura.nombreAsignatura</OPTION>                                  
+                 } 
+                 </SELECT>                  
+     	  <!-- las unidades son cargadas por el archivo formPregunta.coffe con ajax -->
+     	 	<SELECT NAME="Unidad.idUnidad" id="Unidad.idUnidad" class="idUnidad"> 
+            	      
+            </SELECT>
+         
+        </fieldset>
+      </div>    
+        
+            <legend>Alternativas</legend>
+            
+            <div id="alternativas">
+            <!-- Ejecuta el metodo grupoAlternativas para crear los campos en el formulario-->
+            @* repeat(preguntaForm("alternativas"),min=2 )  si se quiere repetir a traves de codigo *@
+                @repeat(preguntaForm("alternativas"),min=1 ) { alternativa =>                
+                    @grupoAlternativas(preguntaForm("alternativas"),0)
+                     @grupoAlternativas(preguntaForm("alternativas"),1)                                       
+                }
+             </div>    
+                
+              
+                
+          <div id="buttonsAddDel">                     
+             <input type="button" class="addAlternativas btn success"  id="btnAdd" value="Agregar alternativa">             
+		     <input type="button" class="removeAlternativa btn danger pull-right"  id="btnDel" value="Eliminar alternativa" disabled="disabled"> 
+		  </div>     
+		        
+		        <div class="actions">
+		            <input type="submit" class="btn btn-primary" value="Crear">
+		            <a href="@routes.Application.index" class="btn btn-danger">Cancel</a>
+		        </div>
+		      
+    }
+   
+   <script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>
+    <script type="text/javascript" charset="utf-8">
+          
+$( document ).ready(function() {
+  //agregarAlternativa();
+});
+	   
+        
+
+ /* evento que permite crear alternativas con maximo de 5 (copia la ultima alternativa creada, cambia su id y name y borra su contenido) */
+	    $('.addAlternativas').click(function () {           
+	  
+	            var numAlternativas = $('.alternativa').length; // Checks to see how many "duplicatable" input fields we currently have
+	           if (numAlternativas >= 5){
+        			$('#btnAdd').attr('disabled', true).prop('value', "Maximo 5 alternativas");
+	           } 
+	           else{
+		             newElem = $('#alternativa').clone().attr('id', 'alternativa' + numAlternativas).attr('name', 'alternativa' + numAlternativas ).fadeIn('slow');
+		             console.log("numero de alternativas: "+ numAlternativas);
+			         newElem.find('.chkCorrecta').attr('id', $('.chkCorrecta').attr('name').replace(/alternativas\[.+?\]/g, 'alternativas[' + numAlternativas + ']')).attr('checked', false);
+			        //newElem.find('.chkCorrecta').attr('name', $('.chkCorrecta').attr('name').replace(/alternativas\[.+?\]/g, 'alternativas[' + numAlternativas + ']')).attr('checked', false);
+			         newElem.find('.alternativaTxt').attr('id', $('.alternativaTxt').attr('name').replace(/alternativas\[.+?\]/g, 'alternativas[' + numAlternativas + ']')).val('');
+			         newElem.find('.alternativaTxt').attr('name', $('.alternativaTxt').attr('name').replace(/alternativas\[.+?\]/g, 'alternativas[' + numAlternativas + ']')).val('');
+			         newElem.find('.removeAlternativa').attr('id', 'btnDel'+ numAlternativas ).attr('name', 'btnDel' + numAlternativas + '_twitter_handle');
+		             if (numAlternativas  <= 2){
+		                 $('#btnDel').attr('disabled', true);
+		             }
+		             $(this).before(newElem);
+	       		     $('#ID' + numAlternativas + '_title').focus();  
+	       		     if (numAlternativas >= 4){$('#btnAdd').attr('disabled', true).prop('value', "Maximo 5 alternativas");}      		   
+	       		     if (numAlternativas  >1){
+		                 $('.removeAlternativa').attr('disabled', false);
+		              // $('#btnDel').attr('disabled', true);
+		             }
+       		}     
+         }); 
+  
+      
+      /* evento borra la ultima alternativa creada y permite el ingreso de una nueva */
+       $('#preguntaForm').on('click','.removeAlternativa', function() {
+	       var num = $('.alternativa').length;
+	       arrayNum  = new Number(num-1);
+	       if( $.trim($('#alternativa'+arrayNum).find('.alternativaTxt').val()).length == 0 )
+	      	 {
+	       			quitarAlternativa(arrayNum)
+	       	 }
+	       	 else{
+			        if (confirm("Desea eliminar esta alternativa."))
+				            {quitarAlternativa(arrayNum);}
+				 }           
+		     return false; 
+        });      
+    
+   /* metodo llamado por el evento  que borra la ultima alternativa */  
+quitarAlternativa = function(idAlternativa) {
+  	                $('#alternativa'+arrayNum).slideUp('slow', function () {
+  	                $(this).remove(); 
+	                if (arrayNum  <= 2){
+	                  $('#btnDel').attr('disabled', true);     
+	                }
+	                else{
+	                	$('#btnDel').attr('disabled', false);
+	                }
+	                // enable the "add" button
+	                $('#btnAdd').attr('disabled', false).prop('value', "Agregar alternativa");
+	                });
+};
+
+    </script> 
+}    

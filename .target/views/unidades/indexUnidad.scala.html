@@ -1,0 +1,15 @@
+@(asignatura: String, unidad: List[Unidad])
+<div id="unidadesdiv">
+<header>
+    <hgroup>
+        <h1>@asignatura</h1>
+       
+    </hgroup>
+    
+</header>
+<article  class="tasks" id="tasks">
+   @unidad.map { Unidad =>
+            @views.html.unidades.itemUnidades(Unidad)
+        }
+    </article>
+</div>    

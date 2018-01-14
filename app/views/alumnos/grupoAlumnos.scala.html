@@ -1,0 +1,12 @@
+@(nombre: String, Alumnos: List[Alumno])
+<li data-group="@nombre">
+    <span class="toggle"></span>
+    <h4 class="groupName">@nombre</h4>
+    <span class="loader"></span>
+    
+    <ul>
+        @Alumnos.map { Alumno =>
+            @views.html.alumnos.itemAlumno(Alumno)
+        }
+    </ul>
+</li>

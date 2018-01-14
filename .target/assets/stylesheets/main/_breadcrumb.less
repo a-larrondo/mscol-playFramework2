@@ -1,0 +1,75 @@
+// -----------------------------------
+// BREADCRUMB
+// -----------------------------------
+// author: mda@zenexity.com - 2011
+// -----------------------------------
+
+#main > header {
+    
+    //background: url(/assets/images/breadcrumb.png);
+    border-bottom: 1px solid @layoutBorderColor;
+    hgroup {
+        height: inherit;
+        overflow: hidden;
+        float: left;
+        clear:both;
+        > * {
+           
+            float: inherit;
+            position: relative;
+            height: inherit;
+            line-height: 20px;
+            margin-left: -15px;
+            padding: 0 6px 0 13px;
+            font-size: 18px;
+           //-webkit-border-image: url(/assets/images/breadcrumb-2.png) 0 30 0 20 stretch stretch;
+            //-moz-border-image: url(/assets/images/breadcrumb-2.png) 0 30 0 20 stretch stretch;
+            //border-image: url(/assets/images/breadcrumb-2.png) 0 30 0 20 stretch stretch;
+            border-width: 0 30px 0 25px;
+            color: @titleColor;
+            -webkit-user-select: text;
+            &:nth-child(2) {
+              //  -webkit-border-image: url(/assets/images/breadcrumb-1.png) 0 30 0 1 stretch stretch;
+               // -moz-border-image: url(/assets/images/breadcrumb-1.png) 0 30 0 1 stretch stretch;
+                //border-image: url(/assets/images/breadcrumb-1.png) 0 30 0 2 stretch stretch;
+            }
+            &:first-child {
+                padding-left: 20px;
+            }
+            p:nth-child(1) { z-index: 5; }
+            p:nth-child(2) { z-index: 4; }
+            p:nth-child(3) { z-index: 3; }
+            p:nth-child(4) { z-index: 2; }
+            p:nth-child(5) { z-index: 1; }
+                
+
+        }
+        > p {
+            margin-top: 8px;
+
+             padding: 0 6px 0 13px;
+            border-width: 0 30px 0 25px;
+              display: inline; 
+             .first { padding-left: 8px; }
+              a, a:link,  a:visited { 
+                color: @crumbsFontColor; 
+                display: block; 
+                float: left; 
+                font-size: 18px;
+                 margin-left: -13px; 
+                 padding: 7px 17px 11px 35px;
+                  position: relative; 
+                  text-decoration: none; }
+
+              a { background-image: url('/assets/images/bg-crumbs.png');  background-repeat: no-repeat; background-position: 100% 0; position: relative; }
+              a:hover { color: #333; background-position: 100% -48px; cursor: pointer; }
+              a:active { color: #333; background-position: 100% -96px; }
+             .first a span { height: 29px; width: 3px; border-left: 1px solid #d9d9d9; position: absolute; top: 0px; left: 0px; }
+        }
+
+
+        
+    }
+}    
+    
+

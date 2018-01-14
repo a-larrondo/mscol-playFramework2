@@ -1,0 +1,41 @@
+@(usuario:Usuario) 
+
+<head>
+        <title>Home @usuario.nombre</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.js")"></script>
+       
+    </head>
+
+<body>
+        <header>
+         <dl id="coodinador" style="color: white;">
+                <dt>Coordinador Docente</dt>
+                
+            </dl>
+           <dl id="user">
+                <dt>@usuario.nombre @usuario.apellido<span>(@usuario.mail)</span></dt>
+                <dd>
+                    <a href="@routes.Application.logout()">Logout</a>
+                </dd>
+            </dl>
+        </header>
+        <nav>
+            <h4 class="dashboard"><a href="#/">Ingresar Cursos</a></h4>
+            <ul id="projects">
+                
+                       
+                
+            </ul>
+            
+        </nav>
+        <nav>
+            <h4 class="dashboard"><a href="#/">Cursos</a></h4>
+            <ul id="projects"> </ul>            
+        </nav>
+        <section id="main">
+            
+        </section>
+    </body>
+</html>

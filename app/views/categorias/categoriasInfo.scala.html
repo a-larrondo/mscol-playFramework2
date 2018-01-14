@@ -1,0 +1,14 @@
+@(categorias : List[Categoria])
+<nav class="center-block">
+	<div id="filtroPreguntas" class="center-block">
+		<label>Informacion de preguntas</label>                                  
+		     <!-- carga la lista de asignaturas que fue resivida al cargar la pagina -->
+		      @for(categoria <- categorias) {
+		     <div class="row">
+		     	<div class=" col-md-9" data-idcategoria="@categoria.id_categoria">@categoria.nombre_categoria</div>
+		     	<div class=" col-md-3">@categoria.cantidad</div>
+		     </div>
+		      } 
+		
+	</div>
+</nav>

@@ -1,0 +1,16 @@
+@(curso: Curso, asignaturas: List[Asignatura])
+<div id="asignaturasdiv" class="inner">
+<header>
+    <hgroup>
+        <h1>@curso.nombre</h1>
+       
+    </hgroup>
+    
+</header>
+<article  class="asignaturas" id="asignaturas">
+   
+            @views.html.asignaturas.grupoAsignatura(curso.nombre, asignaturas)
+        
+    </article>
+
+</div>

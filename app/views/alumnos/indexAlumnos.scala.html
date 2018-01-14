@@ -1,0 +1,14 @@
+@(curso: Curso, alumnos: List[Alumno])
+
+<header>
+    <hgroup>
+        <h1>@curso.nombre</h1>
+       
+    </hgroup>
+    
+</header>
+<article  class="alumnos" id="alumnos">
+   
+            @views.html.alumnos.grupoAlumnos(curso.nombre, alumnos)
+        
+    </article>

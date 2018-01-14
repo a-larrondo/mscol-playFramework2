@@ -1,0 +1,12 @@
+@(perfiles:List[Perfil])
+
+<title>asdf</title>
+
+<body>
+
+@perfiles.map { perfil =>
+		@perfil.descripcion
+		<br>
+	}
+	
+</body>

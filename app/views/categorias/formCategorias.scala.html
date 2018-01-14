@@ -1,0 +1,15 @@
+@(jerarquiaTree : List[JerarquiaTree])
+@title = {
+   Prueba
+}
+@mainForm(title, nav = "prueba") {
+<script src="@routes.Assets.at("javascripts/categorias.js")" type="text/javascript"></script>
+	<div id="tipoPreguntas"class="">
+	 	@for(jerarquia <- jerarquiaTree) {
+			     <div class="row">
+			     	<div class=" col-md-9" id="@jerarquia.idElemento" data-idTipoPregunta="@jerarquia.idElemento" ><a href="#">@jerarquia.nombreElemnto</a></div>
+			     	<div class=" col-md-3"></div>
+			     </div>
+		} 
+	</div>
+}

@@ -1,0 +1,8 @@
+@(unidad: Unidad)
+
+<li data-project="@unidad.idUnidad">
+    <a class="name" >@unidad.idUnidad </a>
+    <br>
+   &ensp; <a class="name" href="#@routes.Preguntas.index(unidad.idUnidad)">@unidad.nombreUnidad</a>
+    <span class="loader"></span>
+</li>

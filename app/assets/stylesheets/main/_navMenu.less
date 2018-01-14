@@ -1,0 +1,44 @@
+body {
+    & > nav { /*barra lateral menu izquierda */
+        padding: 10px 0 0;
+        background: @drawerBackground;
+        border-right: 1px solid @layoutBorderColor;
+        height: auto;
+    }
+    .dashboard {
+        display: block;
+        position: relative;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 10px 5px 5px 25px;
+        //background: url(/assets/images/icons/home.png) 6px 7px no-repeat;
+        a {
+            color: @folderColor;
+            cursor: default;
+        }
+    }
+    h4 {
+        cursor: default;
+    }
+}
+
+/*Slider bottom page*/
+
+.bottomsliderBar {
+z-index:100;
+position:fixed;
+    float:inherit; 
+    bottom: 0;
+     margin-top: 80%;
+   margin-bottom: 5px;  
+   width: 100%;
+   height: 100px
+}
+.bottomsliderBar .inner {
+overflow-y: scroll;
+  position:inherit;
+  left: 0;
+  bottom: 0;
+   background-color: green;
+}

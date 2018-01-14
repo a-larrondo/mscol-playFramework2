@@ -1,0 +1,56 @@
+@(preguntas : List[Pregunta],categorias : List[Categoria])
+ 
+@title = {
+   Prueba
+}
+@mainForm(title, nav = "prueba") {
+<script src="@routes.Assets.at("javascripts/getPreguntas.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/jquery-ui.js")" type="text/javascript"></script>	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  
+	<div class="row">
+	 <div class="col-md-8">	
+		   <div>
+				@views.html.categorias.categoriasInfo(categorias)
+			</div>
+			<br>
+			<div>
+				<li data-group="22">
+				    <span class="toggle"></span>
+				   
+				    <span class="loader"></span>
+				    
+				    <ul>
+				        @preguntas.map { pregunta =>
+				            @views.html.preguntas.itemPregunta(pregunta)
+				        }
+				    </ul>
+				</li>
+			</div>
+		</div>
+			
+		<div class="right col-md-4" id="filtrosPreguntas">	
+	<!-- <div class="btn btn-info" id="btngetTipos">Cargar preguntas</div>
+	-->
+		<div class="" id="filtrosTiposPreguntas"></div>
+		<div class="" id="filtrocategorias"></div>
+			<div id="accordion">
+				 
+			</div>		
+		</div>
+		
+}
+
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.right {
+    float: right;
+    width: 300px;
+    background-color: #b0e0e6;
+}
+</style>

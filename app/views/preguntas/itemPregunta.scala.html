@@ -1,0 +1,39 @@
+@(pregunta: Pregunta)
+<style>
+<!--
+.pregunta{ 
+
+}
+-->
+</style>
+       
+<li data-preguntaid="@pregunta.idPregunta">
+   <div id="@pregunta.idPregunta" class="pregunta"> 
+	   <table class="table table-hover table-bordered">
+	   <thead>		   
+		   	  <th class="active">	   	   
+		      <strong>Pregunta @pregunta.idPregunta</strong> 
+		      </th>
+		 </thead>
+		 <thead>		   
+		   	  <th class="active">	   	   
+		      <strong>@pregunta.pregunta</strong> 
+		      </th>
+		 </thead>
+		 <tbody>
+		    @pregunta.alternativas.map { alternativa =>		    	   
+		    	   @if(alternativa.es_correcta){
+		    	   <tr class="success">
+		    	   }else {<tr>}
+			    	   <td>@alternativa.alternativaTxt   </td>
+		           </tr>
+		          
+		        }
+	    </tbody>      
+	    </table>
+  </div>          
+     &ensp; <article  class="alternativas" id="alternativas">	  
+    </article>
+    
+   
+    <span class="loader"></span>

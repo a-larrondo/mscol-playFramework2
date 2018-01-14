@@ -1,0 +1,41 @@
+@( preguntas: List[Pregunta])
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">	
+<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>   
+   
+<li data-group="22">
+    <span class="toggle"></span>
+   
+    <span class="loader"></span>
+    
+    <ul>
+        @preguntas.map { pregunta =>
+            @views.html.preguntas.itemPregunta(pregunta)
+        }
+    </ul>
+</li>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+		  $('.preguntatoggle').click(function(){
+			//get collapse content selector			
+			var collapse_content_selector = $(this).attr('href');	
+			console.log("href="+ collapse_content_selector)				
+ 
+			//make the collapse content to be shown or hide
+			var toggle_switch = $(this);
+			$(collapse_content_selector).toggle(function(){
+			  if($(this).css('display')=='none'){
+                                //change the button label to be 'Show'
+                  toggle_switch.removeClass( "glyphicon glyphicon-minus" )                
+				 toggle_switch.addClass("glyphicon-plus");
+                 
+			  }else{
+                                //change the button label to be 'Hide'
+               toggle_switch.removeClass( "glyphicon-plus" )
+				toggle_switch.addClass("glyphicon-minus");
+			  }
+			});
+		  });
+ 
+		});	
+    </script>
